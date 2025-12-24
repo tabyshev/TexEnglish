@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechEnglish | PC Build Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h1>TECH<span>ENGLISH</span></h1>
+                <div class="logo-subtitle">PC Build Simulator</div>
+            </div>
+            
+            <div class="game-info">
+                <div class="timer-container">
+                    <div class="timer-label">TIME REMAINING</div>
+                    <div class="timer" id="timer">60</div>
+                </div>
+                
+                <div class="combo-container">
+                    <div class="combo-label">COMBO</div>
+                    <div class="combo" id="combo">0x</div>
+                </div>
+                
+                <div class="score-container">
+                    <div class="score-label">SCORE</div>
+                    <div class="score" id="score">0</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="main-content">
+            <!-- Left Panel: Team 1 -->
+            <div class="team-panel team-1">
+                <div class="team-header">
+                    <h2><i class="fas fa-user-astronaut"></i> TEAM ALPHA</h2>
+                    <div class="team-score" id="team1-score">0</div>
+                </div>
+                
+                <div class="team-progress">
+                    <div class="progress-label">BUILD PROGRESS</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="team1-progress"></div>
+                    </div>
+                    <div class="components-built" id="team1-components">0/7</div>
+                </div>
+                
+                <div class="pc-build-area" id="team1-pc">
+                    <!-- PC components will be added here dynamically -->
+                    <div class="pc-case">
+                        <div class="component-placeholder" data-component="motherboard">
+                            <div class="component-label">MOTHERBOARD</div>
+                        </div>
+                        <div class="component-placeholder" data-component="cpu">
+                            <div class="component-label">CPU</div>
+                        </div>
+                        <div class="component-placeholder" data-component="ram">
+                            <div class="component-label">RAM</div>
+                        </div>
+                        <div class="component-placeholder" data-component="gpu">
+                            <div class="component-label">GPU</div>
+                        </div>
+                        <div class="component-placeholder" data-component="storage">
+                            <div class="component-label">STORAGE</div>
+                        </div>
+                        <div class="component-placeholder" data-component="psu">
+                            <div class="component-label">PSU</div>
+                        </div>
+                        <div class="component-placeholder" data-component="cooling">
+                            <div class="component-label">COOLING</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-area" id="team1-question">
+                    <div class="question-text">Waiting for question...</div>
+                    <div class="answer-options">
+                        <button class="answer-btn" data-team="1" data-option="A">A</button>
+                        <button class="answer-btn" data-team="1" data-option="B">B</button>
+                        <button class="answer-btn" data-team="1" data-option="C">C</button>
+                        <button class="answer-btn" data-team="1" data-option="D">D</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Panel: Game Controls & Status -->
+            <div class="center-panel">
+                <div class="difficulty-selector">
+                    <h3><i class="fas fa-chart-line"></i> DIFFICULTY</h3>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn active" data-difficulty="easy">EASY</button>
+                        <button class="difficulty-btn" data-difficulty="medium">MEDIUM</button>
+                        <button class="difficulty-btn" data-difficulty="hard">HARD</button>
+                    </div>
+                </div>
+                
+                <div class="game-status">
+                    <div class="status-indicator">
+                        <div class="status-light" id="status-light"></div>
+                        <div class="status-text" id="status-text">SYSTEM STANDBY</div>
+                    </div>
+                    
+                    <div class="control-buttons">
+                        <button class="control-btn start-btn" id="start-btn">
+                            <i class="fas fa-play"></i> START GAME
+                        </button>
+                        <button class="control-btn reset-btn" id="reset-btn">
+                            <i class="fas fa-redo"></i> RESET
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <h3><i class="fas fa-info-circle"></i> HOW TO PLAY</h3>
+                    <ul>
+                        <li>Each team answers Technical English questions</li>
+                        <li>Correct answer = PC component installed</li>
+                        <li>Wrong answer = Short circuit (time penalty)</li>
+                        <li>Complete all 7 components to boot the system</li>
+                        <li>Beat the timer for bonus score</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Right Panel: Team 2 -->
+            <div class="team-panel team-2">
+                <div class="team-header">
+                    <h2><i class="fas fa-user-ninja"></i> TEAM BETA</h2>
+                    <div class="team-score" id="team2-score">0</div>
+                </div>
+                
+                <div class="team-progress">
+                    <div class="progress-label">BUILD PROGRESS</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="team2-progress"></div>
+                    </div>
+                    <div class="components-built" id="team2-components">0/7</div>
+                </div>
+                
+                <div class="pc-build-area" id="team2-pc">
+                    <!-- PC components will be added here dynamically -->
+                    <div class="pc-case">
+                        <div class="component-placeholder" data-component="motherboard">
+                            <div class="component-label">MOTHERBOARD</div>
+                        </div>
+                        <div class="component-placeholder" data-component="cpu">
+                            <div class="component-label">CPU</div>
+                        </div>
+                        <div class="component-placeholder" data-component="ram">
+                            <div class="component-label">RAM</div>
+                        </div>
+                        <div class="component-placeholder" data-component="gpu">
+                            <div class="component-label">GPU</div>
+                        </div>
+                        <div class="component-placeholder" data-component="storage">
+                            <div class="component-label">STORAGE</div>
+                        </div>
+                        <div class="component-placeholder" data-component="psu">
+                            <div class="component-label">PSU</div>
+                        </div>
+                        <div class="component-placeholder" data-component="cooling">
+                            <div class="component-label">COOLING</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-area" id="team2-question">
+                    <div class="question-text">Waiting for question...</div>
+                    <div class="answer-options">
+                        <button class="answer-btn" data-team="2" data-option="A">A</button>
+                        <button class="answer-btn" data-team="2" data-option="B">B</button>
+                        <button class="answer-btn" data-team="2" data-option="C">C</button>
+                        <button class="answer-btn" data-team="2" data-option="D">D</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Game Messages -->
+        <div class="game-message" id="game-message">
+            <div class="message-content">
+                <h2 class="message-title">READY TO BUILD</h2>
+                <p class="message-text">Select difficulty and press START to begin the PC Build Simulator</p>
+                <button class="message-btn" id="message-ok">OK</button>
+            </div>
+        </div>
+
+        <!-- Effects Overlay -->
+        <div class="effects-overlay" id="effects-overlay"></div>
+        
+        <!-- Audio Elements (hidden) -->
+        <audio id="correct-sound" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="></audio>
+        <audio id="wrong-sound" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="></audio>
+        <audio id="complete-sound" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="></audio>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-text">
+                <i class="fas fa-code"></i> TECHNICAL ENGLISH SIMULATOR | 
+                <span id="questions-count">0</span> QUESTIONS LOADED | 
+                COMBO: <span id="combo-display">0x</span>
+            </div>
+            <div class="rgb-line"></div>
+        </footer>
+    </div>
+
+    <script src="text.js"></script>
+</body>
+</html>
